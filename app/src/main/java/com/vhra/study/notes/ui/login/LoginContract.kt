@@ -5,6 +5,7 @@ interface LoginContract {
         fun getUserName(): String
         fun getUserPassword(): String
         fun openHomeScreen()
+        fun showError()
     }
 
     interface LoginPresenter {

@@ -23,6 +23,6 @@ class LoginPresenter(
     }
 
     private fun showError(status: LoginUserStatus) {
-
+        view.showError()
     }
 }
