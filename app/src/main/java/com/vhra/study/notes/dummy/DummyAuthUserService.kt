@@ -1,4 +1,4 @@
-package com.vhra.study.notes
+package com.vhra.study.notes.dummy
 
 import com.vhra.study.notes.domain.AuthUserService
 import com.vhra.study.notes.domain.AuthUserSession

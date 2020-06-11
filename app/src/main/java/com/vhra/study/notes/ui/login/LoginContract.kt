@@ -6,6 +6,9 @@ interface LoginContract {
         fun getUserPassword(): String
         fun openHomeScreen()
         fun showError()
+        fun showEmptyInfoError()
+        fun showUnauthUserError()
+        fun showNoInternet()
     }
 
     interface LoginPresenter {

@@ -5,9 +5,20 @@ import java.util.concurrent.Executor
 
 class LoginPresenter(
     private val view: LoginContract.LoginView,
-    private val loginUseCase: UseCase<UserDetail, LoginUserResponse>
+    private val loginUseCase: UseCase<UserDetail, LoginUserResponse>,
+    private val connectivityUseCase: UseCase<Unit, Boolean>
 ) : LoginContract.LoginPresenter {
     override fun onLoginClicked() {
+        connectivityUseCase.run(Unit, callback = { isConnected ->
+            if (isConnected) {
+                login()
+            } else {
+                view.showNoInternet()
+            }
+        })
+    }
+
+    private fun login() {
         val userName = view.getUserName()
         val userPassword = view.getUserPassword()
 
@@ -23,6 +34,9 @@ class LoginPresenter(
     }
 
     private fun showError(status: LoginUserStatus) {
-        view.showError()
+        when (status) {
+            LoginUserStatus.EMPTY_USER_DETAIL_ERROR -> view.showEmptyInfoError()
+            LoginUserStatus.UNAUTHENTICATED_USER_ERROR -> view.showUnauthUserError()
+        }
     }
 }

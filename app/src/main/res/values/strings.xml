@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Notas</string>
     <string name="text_splash_screen_title">Splash Screen</string>
+    <string name="text_empty_user_info_error">Name and password user should not empty!</string>
+    <string name="text_unauthenticated_user_error">Unauthenticated User</string>
+    <string name="text_no_internet_error">No Internet</string>
 </resources>

@@ -31,6 +31,8 @@ class RemoveAuthUserService constructor(
                         callback(response.body()?.data?.run {
                             AuthUserSession(this.user.id, this.token)
                         })
+                    } else {
+                        callback(null)
                     }
                 }
 
