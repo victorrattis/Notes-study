@@ -1,4 +1,8 @@
-package com.vhra.study.notes.domain
+package com.vhra.study.notes.domain.usecase
+
+import com.vhra.study.notes.domain.IConnectivityController
+import com.vhra.study.notes.domain.IWifiController
+import com.vhra.study.notes.domain.UseCase
 
 class CheckIntentConnectionUseCase(
     private val wifiController: IWifiController,

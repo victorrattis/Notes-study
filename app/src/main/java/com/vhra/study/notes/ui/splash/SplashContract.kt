@@ -7,6 +7,7 @@ interface SplashContract {
 
     interface SplashView {
         fun openLoginScreen()
+        fun openHomeScreen()
     }
 }
 

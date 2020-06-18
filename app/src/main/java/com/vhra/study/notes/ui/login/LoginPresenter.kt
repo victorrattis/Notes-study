@@ -1,7 +1,9 @@
 package com.vhra.study.notes.ui.login
 
 import com.vhra.study.notes.domain.*
-import java.util.concurrent.Executor
+import com.vhra.study.notes.domain.usecase.LoginUserResponse
+import com.vhra.study.notes.domain.usecase.LoginUserStatus
+import com.vhra.study.notes.domain.usecase.UserDetail
 
 class LoginPresenter(
     private val view: LoginContract.LoginView,
@@ -23,7 +25,10 @@ class LoginPresenter(
         val userPassword = view.getUserPassword()
 
         loginUseCase.run(
-            UserDetail(userName, userPassword),
+            UserDetail(
+                userName,
+                userPassword
+            ),
             callback = { response ->
                 if (response.isAuthenticatedUser) {
                     view.openHomeScreen()

@@ -7,11 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.vhra.study.notes.R
+import com.vhra.study.notes.data.local.SharedPreferenceUserDataSource
 import com.vhra.study.notes.device.DeviceConnFactory
-import com.vhra.study.notes.device.DeviceConnectivityController
 import com.vhra.study.notes.device.DeviceWifiController
-import com.vhra.study.notes.domain.CheckIntentConnectionUseCase
-import com.vhra.study.notes.domain.LoginUseCase
+import com.vhra.study.notes.domain.usecase.CheckIntentConnectionUseCase
+import com.vhra.study.notes.domain.usecase.LoginUseCase
 import com.vhra.study.notes.remote.RemoveAuthUserService
 import com.vhra.study.notes.remote.RestWebService
 import com.vhra.study.notes.ui.home.HomeActivity
@@ -25,10 +25,14 @@ class LoginActivity : AppCompatActivity(), LoginContract.LoginView {
 
         presenter = LoginPresenter(
             this,
-            LoginUseCase(RemoveAuthUserService(RestWebService().api)),
+            LoginUseCase(
+                RemoveAuthUserService(RestWebService().api),
+                SharedPreferenceUserDataSource(this)
+            ),
             CheckIntentConnectionUseCase(
                 DeviceWifiController(this),
-                DeviceConnFactory.createConnectivityController(this))
+                DeviceConnFactory.createConnectivityController(this)
+            )
         )
 
         findViewById<Button>(R.id.button_login)?.setOnClickListener {

@@ -1,6 +1,6 @@
 package com.vhra.study.notes.domain
 
-import org.junit.Assert.*
+import com.vhra.study.notes.domain.usecase.CheckIntentConnectionUseCase
 import org.junit.Test
 import org.mockito.Mockito
 
@@ -14,7 +14,10 @@ class CheckIntentConnectionUseCaseTest {
         val wifiController: IWifiController = Mockito.mock(IWifiController::class.java)
         Mockito.`when`(wifiController.isWifiOptionEnabled()).thenReturn(false)
 
-        CheckIntentConnectionUseCase(wifiController, connectivityController).run(Unit, callback)
+        CheckIntentConnectionUseCase(
+            wifiController,
+            connectivityController
+        ).run(Unit, callback)
 
         Mockito.verify(callback).invoke(false)
     }
@@ -27,7 +30,10 @@ class CheckIntentConnectionUseCaseTest {
         Mockito.`when`(wifiController.isWifiOptionEnabled()).thenReturn(true)
         Mockito.`when`(connectivityController.hasInternetConnected()).thenReturn(true)
 
-        CheckIntentConnectionUseCase(wifiController, connectivityController).run(Unit, callback)
+        CheckIntentConnectionUseCase(
+            wifiController,
+            connectivityController
+        ).run(Unit, callback)
 
         Mockito.verify(callback).invoke(true)
     }
@@ -40,7 +46,10 @@ class CheckIntentConnectionUseCaseTest {
         Mockito.`when`(wifiController.isWifiOptionEnabled()).thenReturn(true)
         Mockito.`when`(connectivityController.hasInternetConnected()).thenReturn(false)
 
-        CheckIntentConnectionUseCase(wifiController, connectivityController).run(Unit, callback)
+        CheckIntentConnectionUseCase(
+            wifiController,
+            connectivityController
+        ).run(Unit, callback)
 
         Mockito.verify(callback).invoke(false)
     }
